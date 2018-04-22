@@ -1,8 +1,7 @@
 //@flow
 
 import React, { Component } from 'react';
-import { Card, CardActions, CardContent } from 'react-native-paper';
-import { Text } from 'react-native';
+import { Card, CardActions, CardContent, Text } from 'react-native-paper';
 import { material } from 'react-native-typography';
 import { createFragmentContainer, graphql } from 'react-relay';
 import { WebBrowser } from 'expo';
@@ -28,7 +27,8 @@ class StoryCard extends Component<Props> {
             {this.props.story.url ? `(${toBaseURL(this.props.story.url)})` : ''}
           </Text>
           <Text style={material.body1}>
-            {this.props.story.score} points by{' '}
+            {this.props.story.score}{' '}
+            {this.props.story.score === 1 ? 'point' : 'points'} by{' '}
             <Text>{this.props.story.by.hnId}</Text> |{' '}
             {fromNow(Number(this.props.story.time))}
           </Text>
