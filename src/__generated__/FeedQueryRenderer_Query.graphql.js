@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 59eb748b4978a9b2ada8c3dc0aa7463e
+ * @relayHash 83d4159aa4a4bd02eec5f74e02c2bdf8
  */
 
 /* eslint-disable */
@@ -9,37 +9,41 @@
 
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
-type StoryCard_story$ref = any;
+type FeedPaginationContainer_feed$ref = any;
 export type FeedType = ('ASK' | 'BEST' | 'JOB' | 'NEW' | 'SHOW' | 'TOP' | '%future added value');
-export type FeedQueryVariables = {|
-  type: FeedType,
+export type FeedQueryRenderer_QueryVariables = {|
+  type?: ?FeedType,
 |};
-export type FeedQueryResponse = {|
+export type FeedQueryRenderer_QueryResponse = {|
   +storyFeed: ?{|
-    +stories: ?{|
-      +edges: ?$ReadOnlyArray<?{|
-        +node: ?{|
-          +$fragmentRefs: StoryCard_story$ref,
-        |},
-      |}>,
-    |},
+    +$fragmentRefs: FeedPaginationContainer_feed$ref,
   |},
 |};
 */
 
 
 /*
-query FeedQuery(
-  $type: FeedType!
+query FeedQueryRenderer_Query(
+  $type: FeedType
 ) {
   storyFeed(type: $type) {
-    stories(first: 5) {
-      edges {
-        node {
-          ...StoryCard_story
-          id
-        }
+    ...FeedPaginationContainer_feed
+  }
+}
+
+fragment FeedPaginationContainer_feed on Feed {
+  stories(first: 3) {
+    edges {
+      cursor
+      node {
+        ...StoryCard_story
+        id
+        __typename
       }
+    }
+    pageInfo {
+      hasNextPage
+      endCursor
     }
   }
 }
@@ -61,7 +65,7 @@ var v0 = [
   {
     "kind": "LocalArgument",
     "name": "type",
-    "type": "FeedType!",
+    "type": "FeedType",
     "defaultValue": null
   }
 ],
@@ -73,15 +77,7 @@ v1 = [
     "type": "FeedType"
   }
 ],
-v2 = [
-  {
-    "kind": "Literal",
-    "name": "first",
-    "value": 5,
-    "type": "Int"
-  }
-],
-v3 = {
+v2 = {
   "kind": "ScalarField",
   "alias": null,
   "name": "id",
@@ -91,13 +87,13 @@ v3 = {
 return {
   "kind": "Request",
   "operationKind": "query",
-  "name": "FeedQuery",
+  "name": "FeedQueryRenderer_Query",
   "id": null,
-  "text": "query FeedQuery(\n  $type: FeedType!\n) {\n  storyFeed(type: $type) {\n    stories(first: 5) {\n      edges {\n        node {\n          ...StoryCard_story\n          id\n        }\n      }\n    }\n  }\n}\n\nfragment StoryCard_story on Story {\n  title\n  url\n  time\n  score\n  by {\n    hnId\n    id\n  }\n}\n",
+  "text": "query FeedQueryRenderer_Query(\n  $type: FeedType\n) {\n  storyFeed(type: $type) {\n    ...FeedPaginationContainer_feed\n  }\n}\n\nfragment FeedPaginationContainer_feed on Feed {\n  stories(first: 3) {\n    edges {\n      cursor\n      node {\n        ...StoryCard_story\n        id\n        __typename\n      }\n    }\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n  }\n}\n\nfragment StoryCard_story on Story {\n  title\n  url\n  time\n  score\n  by {\n    hnId\n    id\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
-    "name": "FeedQuery",
+    "name": "FeedQueryRenderer_Query",
     "type": "Query",
     "metadata": null,
     "argumentDefinitions": v0,
@@ -112,42 +108,9 @@ return {
         "plural": false,
         "selections": [
           {
-            "kind": "LinkedField",
-            "alias": null,
-            "name": "stories",
-            "storageKey": "stories(first:5)",
-            "args": v2,
-            "concreteType": "StoryConnection",
-            "plural": false,
-            "selections": [
-              {
-                "kind": "LinkedField",
-                "alias": null,
-                "name": "edges",
-                "storageKey": null,
-                "args": null,
-                "concreteType": "StoryEdge",
-                "plural": true,
-                "selections": [
-                  {
-                    "kind": "LinkedField",
-                    "alias": null,
-                    "name": "node",
-                    "storageKey": null,
-                    "args": null,
-                    "concreteType": "Story",
-                    "plural": false,
-                    "selections": [
-                      {
-                        "kind": "FragmentSpread",
-                        "name": "StoryCard_story",
-                        "args": null
-                      }
-                    ]
-                  }
-                ]
-              }
-            ]
+            "kind": "FragmentSpread",
+            "name": "FeedPaginationContainer_feed",
+            "args": null
           }
         ]
       }
@@ -155,7 +118,7 @@ return {
   },
   "operation": {
     "kind": "Operation",
-    "name": "FeedQuery",
+    "name": "FeedQueryRenderer_Query",
     "argumentDefinitions": v0,
     "selections": [
       {
@@ -171,8 +134,15 @@ return {
             "kind": "LinkedField",
             "alias": null,
             "name": "stories",
-            "storageKey": "stories(first:5)",
-            "args": v2,
+            "storageKey": "stories(first:3)",
+            "args": [
+              {
+                "kind": "Literal",
+                "name": "first",
+                "value": 3,
+                "type": "Int"
+              }
+            ],
             "concreteType": "StoryConnection",
             "plural": false,
             "selections": [
@@ -185,6 +155,13 @@ return {
                 "concreteType": "StoryEdge",
                 "plural": true,
                 "selections": [
+                  {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "name": "cursor",
+                    "args": null,
+                    "storageKey": null
+                  },
                   {
                     "kind": "LinkedField",
                     "alias": null,
@@ -238,15 +215,63 @@ return {
                             "args": null,
                             "storageKey": null
                           },
-                          v3
+                          v2
                         ]
                       },
-                      v3
+                      v2,
+                      {
+                        "kind": "ScalarField",
+                        "alias": null,
+                        "name": "__typename",
+                        "args": null,
+                        "storageKey": null
+                      }
                     ]
+                  }
+                ]
+              },
+              {
+                "kind": "LinkedField",
+                "alias": null,
+                "name": "pageInfo",
+                "storageKey": null,
+                "args": null,
+                "concreteType": "PageInfo",
+                "plural": false,
+                "selections": [
+                  {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "name": "hasNextPage",
+                    "args": null,
+                    "storageKey": null
+                  },
+                  {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "name": "endCursor",
+                    "args": null,
+                    "storageKey": null
                   }
                 ]
               }
             ]
+          },
+          {
+            "kind": "LinkedHandle",
+            "alias": null,
+            "name": "stories",
+            "args": [
+              {
+                "kind": "Literal",
+                "name": "first",
+                "value": 3,
+                "type": "Int"
+              }
+            ],
+            "handle": "connection",
+            "key": "FeedPaginationContainer_stories",
+            "filters": null
           }
         ]
       }
@@ -254,5 +279,5 @@ return {
   }
 };
 })();
-(node/*: any*/).hash = '12f32ad2c0b72c4411572fe58af3ef07';
+(node/*: any*/).hash = 'cd1ba0078dec3b9338f73e8e73c24360';
 module.exports = node;

@@ -1,11 +1,11 @@
 //@flow
 
 import React, { Component } from 'react';
-import { QueryRenderer, graphql } from 'react-relay';
-import { Text, ActivityIndicator } from 'react-native';
+import { ActivityIndicator, Text } from 'react-native';
+import { graphql, QueryRenderer } from 'react-relay';
 
 import environment from './Environment';
-import StoryCard from './StoryCard';
+import FeedPaginationContainer from './FeedPaginationContainer';
 
 type Props = {
   route: {
@@ -13,32 +13,26 @@ type Props = {
   }
 };
 
-export default class Feed extends Component<Props> {
+const feedQuery = graphql`
+  query FeedQueryRenderer_Query($type: FeedType) {
+    storyFeed(type: $type) {
+      ...FeedPaginationContainer_feed
+    }
+  }
+`;
+
+export default class FeedQueryRenderer extends Component<Props> {
   render() {
     return (
       <QueryRenderer
         environment={environment}
-        query={graphql`
-          query FeedQuery($type: FeedType!) {
-            storyFeed(type: $type) {
-              stories(first: 5) {
-                edges {
-                  node {
-                    ...StoryCard_story
-                  }
-                }
-              }
-            }
-          }
-        `}
+        query={feedQuery}
         variables={{
           type: this.props.route.key
         }}
         render={({ error, props }) => {
-          if (error) {
-            return <Text>Error</Text>;
-          }
-          if (!props) {
+          if (error) return null;
+          if (!props)
             return (
               <ActivityIndicator
                 style={{
@@ -54,10 +48,12 @@ export default class Feed extends Component<Props> {
                 color="#ef6f2e"
               />
             );
-          }
-          return props.storyFeed.stories.edges.map(edge => (
-            <StoryCard story={edge.node} key={edge.node.__id} />
-          ));
+          return (
+            <FeedPaginationContainer
+              feed={props.storyFeed}
+              type={this.props.route.key}
+            />
+          );
         }}
       />
     );

@@ -5,7 +5,7 @@ import { Text } from 'react-native';
 import { material } from 'react-native-typography';
 import { BottomNavigation } from 'react-native-paper';
 
-import Feed from './Feed';
+import Feed from './FeedQueryRenderer';
 
 type Route = {
   key: string,

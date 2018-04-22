@@ -1,6 +1,9 @@
 //@flow
 
 import { Environment, Network, RecordSource, Store } from 'relay-runtime';
+import { installRelayDevTools } from 'relay-devtools';
+
+installRelayDevTools();
 
 const fetchQuery = (operation, variables) =>
   fetch('https://hn-gql.now.sh/', {
