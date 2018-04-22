@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 83d4159aa4a4bd02eec5f74e02c2bdf8
+ * @relayHash 41597017575490358c15521d0680746b
  */
 
 /* eslint-disable */
@@ -32,7 +32,7 @@ query FeedQueryRenderer_Query(
 }
 
 fragment FeedPaginationContainer_feed on Feed {
-  stories(first: 3) {
+  stories(first: 10) {
     edges {
       cursor
       node {
@@ -89,7 +89,7 @@ return {
   "operationKind": "query",
   "name": "FeedQueryRenderer_Query",
   "id": null,
-  "text": "query FeedQueryRenderer_Query(\n  $type: FeedType\n) {\n  storyFeed(type: $type) {\n    ...FeedPaginationContainer_feed\n  }\n}\n\nfragment FeedPaginationContainer_feed on Feed {\n  stories(first: 3) {\n    edges {\n      cursor\n      node {\n        ...StoryCard_story\n        id\n        __typename\n      }\n    }\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n  }\n}\n\nfragment StoryCard_story on Story {\n  title\n  url\n  time\n  score\n  by {\n    hnId\n    id\n  }\n}\n",
+  "text": "query FeedQueryRenderer_Query(\n  $type: FeedType\n) {\n  storyFeed(type: $type) {\n    ...FeedPaginationContainer_feed\n  }\n}\n\nfragment FeedPaginationContainer_feed on Feed {\n  stories(first: 10) {\n    edges {\n      cursor\n      node {\n        ...StoryCard_story\n        id\n        __typename\n      }\n    }\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n  }\n}\n\nfragment StoryCard_story on Story {\n  title\n  url\n  time\n  score\n  by {\n    hnId\n    id\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -134,12 +134,12 @@ return {
             "kind": "LinkedField",
             "alias": null,
             "name": "stories",
-            "storageKey": "stories(first:3)",
+            "storageKey": "stories(first:10)",
             "args": [
               {
                 "kind": "Literal",
                 "name": "first",
-                "value": 3,
+                "value": 10,
                 "type": "Int"
               }
             ],
@@ -265,7 +265,7 @@ return {
               {
                 "kind": "Literal",
                 "name": "first",
-                "value": 3,
+                "value": 10,
                 "type": "Int"
               }
             ],

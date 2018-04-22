@@ -50,7 +50,7 @@ const node/*: ConcreteFragment*/ = {
       "kind": "LocalArgument",
       "name": "count",
       "type": "Int",
-      "defaultValue": 3
+      "defaultValue": 10
     },
     {
       "kind": "LocalArgument",
@@ -139,5 +139,5 @@ const node/*: ConcreteFragment*/ = {
     }
   ]
 };
-(node/*: any*/).hash = 'd929540695ecb29890f4b5f954ea8b6f';
+(node/*: any*/).hash = 'ec87e6649cc1d6807eeca88570913b9e';
 module.exports = node;

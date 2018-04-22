@@ -1,8 +1,7 @@
 //@flow
 
 import React, { Component } from 'react';
-import { ActivityIndicator, View } from 'react-native';
-import { Button } from 'react-native-paper';
+import { ActivityIndicator, FlatList } from 'react-native';
 import { graphql, createPaginationContainer } from 'react-relay';
 
 import StoryCard from './StoryCard';
@@ -15,23 +14,40 @@ type Props = {
   relay: RelayPaginationProp
 };
 
-class FeedPaginationContainer extends Component<Props> {
+type State = {
+  isRefreshing: boolean
+};
+
+class FeedPaginationContainer extends Component<Props, State> {
+  state = {
+    isRefreshing: false
+  };
+
   _loadMore() {
     if (!this.props.relay.hasMore() || this.props.relay.isLoading()) {
       return;
     }
 
-    this.props.relay.loadMore(1, (...args) => console.log(args));
+    this.props.relay.loadMore(5);
+  }
+
+  _refresh() {
+    this.setState({ isRefreshing: true });
+    this.props.relay.refetchConnection(10, () =>
+      this.setState({ isRefreshing: false })
+    );
   }
 
   render() {
     return (
-      <View>
-        {this.props.feed.stories.edges.map(edge => (
-          <StoryCard story={edge.node} key={edge.node.__id} />
-        ))}
-        <Button onPress={() => this._loadMore()}>Load More</Button>
-      </View>
+      <FlatList
+        data={this.props.feed.stories.edges}
+        keyExtractor={edge => edge.node.__id}
+        refreshing={this.state.isRefreshing}
+        onRefresh={() => this._refresh()}
+        onEndReached={() => this._loadMore()}
+        renderItem={({ item: edge }) => <StoryCard story={edge.node} />}
+      />
     );
   }
 }
@@ -53,7 +69,7 @@ export default createPaginationContainer(
   graphql`
     fragment FeedPaginationContainer_feed on Feed
       @argumentDefinitions(
-        count: { type: "Int", defaultValue: 3 }
+        count: { type: "Int", defaultValue: 10 }
         cursor: { type: "String" }
       ) {
       stories(first: $count, after: $cursor)
