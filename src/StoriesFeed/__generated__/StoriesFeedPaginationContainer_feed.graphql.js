@@ -10,8 +10,8 @@
 import type { ConcreteFragment } from 'relay-runtime';
 type StoryCard_story$ref = any;
 import type { FragmentReference } from 'relay-runtime';
-declare export opaque type FeedPaginationContainer_feed$ref: FragmentReference;
-export type FeedPaginationContainer_feed = {|
+declare export opaque type StoriesFeedPaginationContainer_feed$ref: FragmentReference;
+export type StoriesFeedPaginationContainer_feed = {|
   +stories: ?{|
     +edges: ?$ReadOnlyArray<?{|
       +cursor: string,
@@ -24,14 +24,14 @@ export type FeedPaginationContainer_feed = {|
       +endCursor: ?string,
     |},
   |},
-  +$refType: FeedPaginationContainer_feed$ref,
+  +$refType: StoriesFeedPaginationContainer_feed$ref,
 |};
 */
 
 
 const node/*: ConcreteFragment*/ = {
   "kind": "Fragment",
-  "name": "FeedPaginationContainer_feed",
+  "name": "StoriesFeedPaginationContainer_feed",
   "type": "Feed",
   "metadata": {
     "connection": [
@@ -63,7 +63,7 @@ const node/*: ConcreteFragment*/ = {
     {
       "kind": "LinkedField",
       "alias": "stories",
-      "name": "__FeedPaginationContainer_stories_connection",
+      "name": "__StoriesFeedPaginationContainer_stories_connection",
       "storageKey": null,
       "args": null,
       "concreteType": "StoryConnection",
@@ -139,5 +139,5 @@ const node/*: ConcreteFragment*/ = {
     }
   ]
 };
-(node/*: any*/).hash = 'ec87e6649cc1d6807eeca88570913b9e';
+(node/*: any*/).hash = 'af7e58580d29eecf0ca4aec0846d0717';
 module.exports = node;

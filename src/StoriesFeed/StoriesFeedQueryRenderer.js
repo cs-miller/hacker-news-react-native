@@ -4,8 +4,8 @@ import React, { Component } from 'react';
 import { ActivityIndicator, Text } from 'react-native';
 import { graphql, QueryRenderer } from 'react-relay';
 
-import environment from './Environment';
-import FeedPaginationContainer from './FeedPaginationContainer';
+import environment from '../Environment';
+import StoriesFeedPaginationContainer from './StoriesFeedPaginationContainer';
 
 type Props = {
   route: {
@@ -14,14 +14,14 @@ type Props = {
 };
 
 const feedQuery = graphql`
-  query FeedQueryRenderer_Query($type: FeedType) {
+  query StoriesFeedQueryRenderer_Query($type: FeedType) {
     storyFeed(type: $type) {
-      ...FeedPaginationContainer_feed
+      ...StoriesFeedPaginationContainer_feed
     }
   }
 `;
 
-export default class FeedQueryRenderer extends Component<Props> {
+export default class StoriesFeedQueryRenderer extends Component<Props> {
   render() {
     return (
       <QueryRenderer
@@ -49,7 +49,7 @@ export default class FeedQueryRenderer extends Component<Props> {
               />
             );
           return (
-            <FeedPaginationContainer
+            <StoriesFeedPaginationContainer
               feed={props.storyFeed}
               type={this.props.route.key}
             />

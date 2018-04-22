@@ -6,11 +6,11 @@ import { graphql, createPaginationContainer } from 'react-relay';
 
 import StoryCard from './StoryCard';
 
-import type { FeedPaginationContainer_feed } from './__generated__/FeedPaginationContainer_feed.graphql';
+import type { StoriesFeedPaginationContainer_feed } from './__generated__/StoriesFeedPaginationContainer_feed.graphql';
 import type { RelayPaginationProp } from 'react-relay';
 
 type Props = {
-  feed: FeedPaginationContainer_feed,
+  feed: StoriesFeedPaginationContainer_feed,
   relay: RelayPaginationProp
 };
 
@@ -18,7 +18,7 @@ type State = {
   isRefreshing: boolean
 };
 
-class FeedPaginationContainer extends Component<Props, State> {
+class StoriesFeedPaginationContainer extends Component<Props, State> {
   state = {
     isRefreshing: false
   };
@@ -39,6 +39,13 @@ class FeedPaginationContainer extends Component<Props, State> {
   }
 
   render() {
+    if (
+      !this.props.feed ||
+      !this.props.feed.stories ||
+      !this.props.feed.stories.edges
+    )
+      return <FlatList data={[]} renderItem={() => null} />;
+
     return (
       <FlatList
         data={this.props.feed.stories.edges}
@@ -53,27 +60,28 @@ class FeedPaginationContainer extends Component<Props, State> {
 }
 
 const query = graphql`
-  query FeedPaginationContainerQuery(
+  query StoriesFeedPaginationContainerQuery(
     $count: Int!
     $cursor: String
     $type: FeedType!
   ) {
     storyFeed(type: $type) {
-      ...FeedPaginationContainer_feed @arguments(count: $count, cursor: $cursor)
+      ...StoriesFeedPaginationContainer_feed
+        @arguments(count: $count, cursor: $cursor)
     }
   }
 `;
 
 export default createPaginationContainer(
-  FeedPaginationContainer,
+  StoriesFeedPaginationContainer,
   graphql`
-    fragment FeedPaginationContainer_feed on Feed
+    fragment StoriesFeedPaginationContainer_feed on Feed
       @argumentDefinitions(
         count: { type: "Int", defaultValue: 10 }
         cursor: { type: "String" }
       ) {
       stories(first: $count, after: $cursor)
-        @connection(key: "FeedPaginationContainer_stories") {
+        @connection(key: "StoriesFeedPaginationContainer_stories") {
         edges {
           cursor
           node {

@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash ef6a33dc09ff028663ce1887328d49cb
+ * @relayHash 7ff50c6ff612b75af8971dc6cdcc52df
  */
 
 /* eslint-disable */
@@ -9,34 +9,30 @@
 
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
-type FeedPaginationContainer_feed$ref = any;
+type StoriesFeedPaginationContainer_feed$ref = any;
 export type FeedType = ('ASK' | 'BEST' | 'JOB' | 'NEW' | 'SHOW' | 'TOP' | '%future added value');
-export type FeedPaginationContainerQueryVariables = {|
-  count: number,
-  cursor?: ?string,
-  type: FeedType,
+export type StoriesFeedQueryRenderer_QueryVariables = {|
+  type?: ?FeedType,
 |};
-export type FeedPaginationContainerQueryResponse = {|
+export type StoriesFeedQueryRenderer_QueryResponse = {|
   +storyFeed: ?{|
-    +$fragmentRefs: FeedPaginationContainer_feed$ref,
+    +$fragmentRefs: StoriesFeedPaginationContainer_feed$ref,
   |},
 |};
 */
 
 
 /*
-query FeedPaginationContainerQuery(
-  $count: Int!
-  $cursor: String
-  $type: FeedType!
+query StoriesFeedQueryRenderer_Query(
+  $type: FeedType
 ) {
   storyFeed(type: $type) {
-    ...FeedPaginationContainer_feed_1G22uz
+    ...StoriesFeedPaginationContainer_feed
   }
 }
 
-fragment FeedPaginationContainer_feed_1G22uz on Feed {
-  stories(first: $count, after: $cursor) {
+fragment StoriesFeedPaginationContainer_feed on Feed {
+  stories(first: 10) {
     edges {
       cursor
       node {
@@ -68,20 +64,8 @@ const node/*: ConcreteRequest*/ = (function(){
 var v0 = [
   {
     "kind": "LocalArgument",
-    "name": "count",
-    "type": "Int!",
-    "defaultValue": null
-  },
-  {
-    "kind": "LocalArgument",
-    "name": "cursor",
-    "type": "String",
-    "defaultValue": null
-  },
-  {
-    "kind": "LocalArgument",
     "name": "type",
-    "type": "FeedType!",
+    "type": "FeedType",
     "defaultValue": null
   }
 ],
@@ -103,13 +87,13 @@ v2 = {
 return {
   "kind": "Request",
   "operationKind": "query",
-  "name": "FeedPaginationContainerQuery",
+  "name": "StoriesFeedQueryRenderer_Query",
   "id": null,
-  "text": "query FeedPaginationContainerQuery(\n  $count: Int!\n  $cursor: String\n  $type: FeedType!\n) {\n  storyFeed(type: $type) {\n    ...FeedPaginationContainer_feed_1G22uz\n  }\n}\n\nfragment FeedPaginationContainer_feed_1G22uz on Feed {\n  stories(first: $count, after: $cursor) {\n    edges {\n      cursor\n      node {\n        ...StoryCard_story\n        id\n        __typename\n      }\n    }\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n  }\n}\n\nfragment StoryCard_story on Story {\n  title\n  url\n  time\n  score\n  by {\n    hnId\n    id\n  }\n}\n",
+  "text": "query StoriesFeedQueryRenderer_Query(\n  $type: FeedType\n) {\n  storyFeed(type: $type) {\n    ...StoriesFeedPaginationContainer_feed\n  }\n}\n\nfragment StoriesFeedPaginationContainer_feed on Feed {\n  stories(first: 10) {\n    edges {\n      cursor\n      node {\n        ...StoryCard_story\n        id\n        __typename\n      }\n    }\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n  }\n}\n\nfragment StoryCard_story on Story {\n  title\n  url\n  time\n  score\n  by {\n    hnId\n    id\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
-    "name": "FeedPaginationContainerQuery",
+    "name": "StoriesFeedQueryRenderer_Query",
     "type": "Query",
     "metadata": null,
     "argumentDefinitions": v0,
@@ -125,21 +109,8 @@ return {
         "selections": [
           {
             "kind": "FragmentSpread",
-            "name": "FeedPaginationContainer_feed",
-            "args": [
-              {
-                "kind": "Variable",
-                "name": "count",
-                "variableName": "count",
-                "type": null
-              },
-              {
-                "kind": "Variable",
-                "name": "cursor",
-                "variableName": "cursor",
-                "type": null
-              }
-            ]
+            "name": "StoriesFeedPaginationContainer_feed",
+            "args": null
           }
         ]
       }
@@ -147,7 +118,7 @@ return {
   },
   "operation": {
     "kind": "Operation",
-    "name": "FeedPaginationContainerQuery",
+    "name": "StoriesFeedQueryRenderer_Query",
     "argumentDefinitions": v0,
     "selections": [
       {
@@ -163,18 +134,12 @@ return {
             "kind": "LinkedField",
             "alias": null,
             "name": "stories",
-            "storageKey": null,
+            "storageKey": "stories(first:10)",
             "args": [
               {
-                "kind": "Variable",
-                "name": "after",
-                "variableName": "cursor",
-                "type": "String"
-              },
-              {
-                "kind": "Variable",
+                "kind": "Literal",
                 "name": "first",
-                "variableName": "count",
+                "value": 10,
                 "type": "Int"
               }
             ],
@@ -298,20 +263,14 @@ return {
             "name": "stories",
             "args": [
               {
-                "kind": "Variable",
-                "name": "after",
-                "variableName": "cursor",
-                "type": "String"
-              },
-              {
-                "kind": "Variable",
+                "kind": "Literal",
                 "name": "first",
-                "variableName": "count",
+                "value": 10,
                 "type": "Int"
               }
             ],
             "handle": "connection",
-            "key": "FeedPaginationContainer_stories",
+            "key": "StoriesFeedPaginationContainer_stories",
             "filters": null
           }
         ]
@@ -320,5 +279,5 @@ return {
   }
 };
 })();
-(node/*: any*/).hash = 'f7a46896b0d819eae581e944834c3b37';
+(node/*: any*/).hash = '133fcc2bd8f852d3a9f80bb2061aa229';
 module.exports = node;

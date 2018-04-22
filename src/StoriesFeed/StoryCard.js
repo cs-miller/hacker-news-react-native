@@ -5,8 +5,10 @@ import { Card, CardActions, CardContent, Text } from 'react-native-paper';
 import { material } from 'react-native-typography';
 import { createFragmentContainer, graphql } from 'react-relay';
 import { WebBrowser } from 'expo';
+
+import { toBaseURL, fromNow } from '../utils';
+
 import type { StoryCard_story } from './__generated__/StoryCard_story.graphql';
-import { toBaseURL, fromNow } from './utils';
 
 type Props = {
   story: StoryCard_story
