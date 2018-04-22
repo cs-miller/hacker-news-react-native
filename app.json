@@ -1,0 +1,25 @@
+{
+  "expo": {
+    "name": "hacker-news-react-native",
+    "description": "A hacker news client",
+    "slug": "hacker-news-react-native",
+    "privacy": "public",
+    "sdkVersion": "26.0.0",
+    "platforms": ["ios"],
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "supportsTablet": false
+    }
+  }
+}

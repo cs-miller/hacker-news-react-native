@@ -1,0 +1,9 @@
+{
+  "plugins": ["relay", "react-native-paper/babel"],
+  "presets": ["babel-preset-expo", "flow"],
+  "env": {
+    "development": {
+      "plugins": ["transform-react-jsx-source"]
+    }
+  }
+}
