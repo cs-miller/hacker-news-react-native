@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 7ff50c6ff612b75af8971dc6cdcc52df
+ * @relayHash 2ab49f40079706ea67005521250474e8
  */
 
 /* eslint-disable */
@@ -53,8 +53,10 @@ fragment StoryCard_story on Story {
   url
   time
   score
+  descendants
   by {
     hnId
+    created
     id
   }
 }
@@ -89,7 +91,7 @@ return {
   "operationKind": "query",
   "name": "StoriesFeedQueryRenderer_Query",
   "id": null,
-  "text": "query StoriesFeedQueryRenderer_Query(\n  $type: FeedType\n) {\n  storyFeed(type: $type) {\n    ...StoriesFeedPaginationContainer_feed\n  }\n}\n\nfragment StoriesFeedPaginationContainer_feed on Feed {\n  stories(first: 10) {\n    edges {\n      cursor\n      node {\n        ...StoryCard_story\n        id\n        __typename\n      }\n    }\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n  }\n}\n\nfragment StoryCard_story on Story {\n  title\n  url\n  time\n  score\n  by {\n    hnId\n    id\n  }\n}\n",
+  "text": "query StoriesFeedQueryRenderer_Query(\n  $type: FeedType\n) {\n  storyFeed(type: $type) {\n    ...StoriesFeedPaginationContainer_feed\n  }\n}\n\nfragment StoriesFeedPaginationContainer_feed on Feed {\n  stories(first: 10) {\n    edges {\n      cursor\n      node {\n        ...StoryCard_story\n        id\n        __typename\n      }\n    }\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n  }\n}\n\nfragment StoryCard_story on Story {\n  title\n  url\n  time\n  score\n  descendants\n  by {\n    hnId\n    created\n    id\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -200,6 +202,13 @@ return {
                         "storageKey": null
                       },
                       {
+                        "kind": "ScalarField",
+                        "alias": null,
+                        "name": "descendants",
+                        "args": null,
+                        "storageKey": null
+                      },
+                      {
                         "kind": "LinkedField",
                         "alias": null,
                         "name": "by",
@@ -212,6 +221,13 @@ return {
                             "kind": "ScalarField",
                             "alias": null,
                             "name": "hnId",
+                            "args": null,
+                            "storageKey": null
+                          },
+                          {
+                            "kind": "ScalarField",
+                            "alias": null,
+                            "name": "created",
                             "args": null,
                             "storageKey": null
                           },

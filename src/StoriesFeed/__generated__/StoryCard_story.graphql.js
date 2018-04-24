@@ -15,8 +15,10 @@ export type StoryCard_story = {|
   +url: ?string,
   +time: ?number,
   +score: ?number,
+  +descendants: ?number,
   +by: {|
     +hnId: string,
+    +created: number,
   |},
   +$refType: StoryCard_story$ref,
 |};
@@ -59,6 +61,13 @@ const node/*: ConcreteFragment*/ = {
       "storageKey": null
     },
     {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "descendants",
+      "args": null,
+      "storageKey": null
+    },
+    {
       "kind": "LinkedField",
       "alias": null,
       "name": "by",
@@ -73,10 +82,17 @@ const node/*: ConcreteFragment*/ = {
           "name": "hnId",
           "args": null,
           "storageKey": null
+        },
+        {
+          "kind": "ScalarField",
+          "alias": null,
+          "name": "created",
+          "args": null,
+          "storageKey": null
         }
       ]
     }
   ]
 };
-(node/*: any*/).hash = '7146e09c561dceedaca79e2afbc256bd';
+(node/*: any*/).hash = '36c3fe39f2016b4b363ecf800be71e78';
 module.exports = node;

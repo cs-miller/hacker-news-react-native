@@ -1,12 +1,12 @@
 //@flow
 
 import React, { Component } from 'react';
-import { StackNavigator } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation';
 
 import StoriesFeedNavigator from './StoriesFeed/StoriesFeedNavigator';
 // import CommentsFeedNavigator from './CommentsFeed/CommentsFeedNavigator';
 
-export default StackNavigator(
+export default createStackNavigator(
   {
     StoriesFeed: {
       screen: StoriesFeedNavigator
