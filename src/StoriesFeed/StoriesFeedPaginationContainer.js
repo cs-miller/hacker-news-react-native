@@ -28,7 +28,7 @@ class StoriesFeedPaginationContainer extends Component<Props, State> {
       return;
     }
 
-    this.props.relay.loadMore(5);
+    this.props.relay.loadMore(10);
   }
 
   _refresh() {

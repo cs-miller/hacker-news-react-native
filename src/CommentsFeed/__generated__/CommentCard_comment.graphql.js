@@ -9,20 +9,17 @@
 /*::
 import type { ConcreteFragment } from 'relay-runtime';
 import type { FragmentReference } from 'relay-runtime';
-declare export opaque type StoryCard_story$ref: FragmentReference;
-export type StoryCard_story = {|
+declare export opaque type CommentCard_comment$ref: FragmentReference;
+export type CommentCard_comment = {|
   +id: string,
-  +title: ?string,
-  +url: ?string,
+  +text: ?string,
   +time: ?number,
-  +score: ?number,
-  +descendants: ?number,
   +by: {|
     +id: string,
     +hnId: string,
     +created: number,
   |},
-  +$refType: StoryCard_story$ref,
+  +$refType: CommentCard_comment$ref,
 |};
 */
 
@@ -37,8 +34,8 @@ var v0 = {
 };
 return {
   "kind": "Fragment",
-  "name": "StoryCard_story",
-  "type": "Story",
+  "name": "CommentCard_comment",
+  "type": "Comment",
   "metadata": null,
   "argumentDefinitions": [],
   "selections": [
@@ -46,14 +43,7 @@ return {
     {
       "kind": "ScalarField",
       "alias": null,
-      "name": "title",
-      "args": null,
-      "storageKey": null
-    },
-    {
-      "kind": "ScalarField",
-      "alias": null,
-      "name": "url",
+      "name": "text",
       "args": null,
       "storageKey": null
     },
@@ -61,20 +51,6 @@ return {
       "kind": "ScalarField",
       "alias": null,
       "name": "time",
-      "args": null,
-      "storageKey": null
-    },
-    {
-      "kind": "ScalarField",
-      "alias": null,
-      "name": "score",
-      "args": null,
-      "storageKey": null
-    },
-    {
-      "kind": "ScalarField",
-      "alias": null,
-      "name": "descendants",
       "args": null,
       "storageKey": null
     },
@@ -107,5 +83,5 @@ return {
   ]
 };
 })();
-(node/*: any*/).hash = 'a7e1090648c2348efa313d8ed4678fca';
+(node/*: any*/).hash = '9ad063da27dc729745c99702bb6b80e6';
 module.exports = node;

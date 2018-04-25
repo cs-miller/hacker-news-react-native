@@ -1,4 +1,4 @@
-// flow-typed signature: bd99296f1437636ae44420c1ff992629
+// flow-typed signature: cd5f070bf8f0b4be4719a795d427834e
 // flow-typed version: <<STUB>>/react-native-paper_v^1.4.0/flow_v0.70.0
 
 /**
@@ -174,7 +174,7 @@ declare module 'react-native-paper/src/components/RadioButtonGroup' {
   declare module.exports: any;
 }
 
-declare module 'react-native-paper/src/components/SearchBar' {
+declare module 'react-native-paper/src/components/Searchbar' {
   declare module.exports: any;
 }
 
@@ -393,8 +393,8 @@ declare module 'react-native-paper/src/components/RadioButton.js' {
 declare module 'react-native-paper/src/components/RadioButtonGroup.js' {
   declare module.exports: $Exports<'react-native-paper/src/components/RadioButtonGroup'>;
 }
-declare module 'react-native-paper/src/components/SearchBar.js' {
-  declare module.exports: $Exports<'react-native-paper/src/components/SearchBar'>;
+declare module 'react-native-paper/src/components/Searchbar.js' {
+  declare module.exports: $Exports<'react-native-paper/src/components/Searchbar'>;
 }
 declare module 'react-native-paper/src/components/Switch.js' {
   declare module.exports: $Exports<'react-native-paper/src/components/Switch'>;

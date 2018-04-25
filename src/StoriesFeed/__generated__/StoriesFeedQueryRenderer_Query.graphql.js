@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 2ab49f40079706ea67005521250474e8
+ * @relayHash 161409de2d15049b498c6ab37eddeecf
  */
 
 /* eslint-disable */
@@ -49,15 +49,16 @@ fragment StoriesFeedPaginationContainer_feed on Feed {
 }
 
 fragment StoryCard_story on Story {
+  id
   title
   url
   time
   score
   descendants
   by {
+    id
     hnId
     created
-    id
   }
 }
 */
@@ -91,7 +92,7 @@ return {
   "operationKind": "query",
   "name": "StoriesFeedQueryRenderer_Query",
   "id": null,
-  "text": "query StoriesFeedQueryRenderer_Query(\n  $type: FeedType\n) {\n  storyFeed(type: $type) {\n    ...StoriesFeedPaginationContainer_feed\n  }\n}\n\nfragment StoriesFeedPaginationContainer_feed on Feed {\n  stories(first: 10) {\n    edges {\n      cursor\n      node {\n        ...StoryCard_story\n        id\n        __typename\n      }\n    }\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n  }\n}\n\nfragment StoryCard_story on Story {\n  title\n  url\n  time\n  score\n  descendants\n  by {\n    hnId\n    created\n    id\n  }\n}\n",
+  "text": "query StoriesFeedQueryRenderer_Query(\n  $type: FeedType\n) {\n  storyFeed(type: $type) {\n    ...StoriesFeedPaginationContainer_feed\n  }\n}\n\nfragment StoriesFeedPaginationContainer_feed on Feed {\n  stories(first: 10) {\n    edges {\n      cursor\n      node {\n        ...StoryCard_story\n        id\n        __typename\n      }\n    }\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n  }\n}\n\nfragment StoryCard_story on Story {\n  id\n  title\n  url\n  time\n  score\n  descendants\n  by {\n    id\n    hnId\n    created\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -173,6 +174,7 @@ return {
                     "concreteType": "Story",
                     "plural": false,
                     "selections": [
+                      v2,
                       {
                         "kind": "ScalarField",
                         "alias": null,
@@ -217,6 +219,7 @@ return {
                         "concreteType": "User",
                         "plural": false,
                         "selections": [
+                          v2,
                           {
                             "kind": "ScalarField",
                             "alias": null,
@@ -230,11 +233,9 @@ return {
                             "name": "created",
                             "args": null,
                             "storageKey": null
-                          },
-                          v2
+                          }
                         ]
                       },
-                      v2,
                       {
                         "kind": "ScalarField",
                         "alias": null,

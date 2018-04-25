@@ -10,6 +10,7 @@ import {
 } from 'react-native-paper';
 import { material } from 'react-native-typography';
 import { createFragmentContainer, graphql } from 'react-relay';
+import { withNavigation } from 'react-navigation';
 import { WebBrowser } from 'expo';
 
 import { toBaseURL, fromNow, usernameColor } from '../utils';
@@ -17,22 +18,26 @@ import { toBaseURL, fromNow, usernameColor } from '../utils';
 import type { StoryCard_story } from './__generated__/StoryCard_story.graphql';
 
 type Props = {
-  story: StoryCard_story
+  story: StoryCard_story,
+  navigation: any
 };
 
 class StoryCard extends Component<Props> {
-  _onCardPress() {
+  _onCardPress(navigation) {
     if (!this.props.story.url) return;
     WebBrowser.openBrowserAsync(this.props.story.url);
   }
 
   _onCommentsPress() {
-    return;
+    this.props.navigation.navigate('CommentsFeed', {
+      storyId: this.props.story.id
+    });
   }
 
   _onUserPress() {
-    console.log(this.props);
-    return;
+    this.props.navigation.navigate('UserProfile', {
+      userId: this.props.story.by.id
+    });
   }
 
   renderScore() {
@@ -89,15 +94,17 @@ class StoryCard extends Component<Props> {
 }
 
 export default createFragmentContainer(
-  StoryCard,
+  withNavigation(StoryCard),
   graphql`
     fragment StoryCard_story on Story {
+      id
       title
       url
       time
       score
       descendants
       by {
+        id
         hnId
         created
       }
