@@ -11,7 +11,7 @@ import {
 import { material } from 'react-native-typography';
 import { createFragmentContainer, graphql } from 'react-relay';
 import { withNavigation } from 'react-navigation';
-import { WebBrowser } from 'expo';
+import { WebBrowser, Haptic } from 'expo';
 
 import { toBaseURL, fromNow, usernameColor } from '../utils';
 
@@ -23,13 +23,14 @@ type Props = {
 };
 
 class StoryCard extends Component<Props> {
-  _onCardPress(navigation) {
-    if (!this.props.story.url) return;
+  _onCardPress() {
+    if (!this.props.story.url) return void this._onCommentsPress();
     WebBrowser.openBrowserAsync(this.props.story.url);
   }
 
   _onCommentsPress() {
-    this.props.navigation.navigate('CommentsFeed', {
+    Haptic.notification(Haptic.NotificationTypes.Success);
+    return void this.props.navigation.navigate('CommentsFeed', {
       storyId: this.props.story.id
     });
   }

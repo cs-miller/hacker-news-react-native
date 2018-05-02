@@ -73,7 +73,6 @@ export default class StoriesFeedNavigator extends Component<Props, State> {
         navigationState={this.state}
         onIndexChange={this._handleIndexChange}
         renderScene={this._renderScene}
-        barStyle={{ elevation: 0 }}
       />
     );
   }
