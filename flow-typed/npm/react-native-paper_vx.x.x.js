@@ -1,4 +1,4 @@
-// flow-typed signature: fdbc1a733825b81682eb8b5897843f61
+// flow-typed signature: d42f76aca3ea3c8ac24ebd06c546f8a5
 // flow-typed version: <<STUB>>/react-native-paper_v^1.4.0/flow_v0.71.0
 
 /**
@@ -70,6 +70,10 @@ declare module 'react-native-paper/src/components/Checkbox' {
   declare module.exports: any;
 }
 
+declare module 'react-native-paper/src/components/Chip' {
+  declare module.exports: any;
+}
+
 declare module 'react-native-paper/src/components/Dialog/Dialog' {
   declare module.exports: any;
 }
@@ -106,15 +110,23 @@ declare module 'react-native-paper/src/components/FAB' {
   declare module.exports: any;
 }
 
+declare module 'react-native-paper/src/components/HelperText' {
+  declare module.exports: any;
+}
+
 declare module 'react-native-paper/src/components/Icon' {
   declare module.exports: any;
 }
 
-declare module 'react-native-paper/src/components/ListItem' {
+declare module 'react-native-paper/src/components/List/ListAccordion' {
   declare module.exports: any;
 }
 
-declare module 'react-native-paper/src/components/ListSection' {
+declare module 'react-native-paper/src/components/List/ListItem' {
+  declare module.exports: any;
+}
+
+declare module 'react-native-paper/src/components/List/ListSection' {
   declare module.exports: any;
 }
 
@@ -319,6 +331,9 @@ declare module 'react-native-paper/src/components/Checkbox.ios.js' {
 declare module 'react-native-paper/src/components/Checkbox.js' {
   declare module.exports: $Exports<'react-native-paper/src/components/Checkbox'>;
 }
+declare module 'react-native-paper/src/components/Chip.js' {
+  declare module.exports: $Exports<'react-native-paper/src/components/Chip'>;
+}
 declare module 'react-native-paper/src/components/Dialog/Dialog.js' {
   declare module.exports: $Exports<'react-native-paper/src/components/Dialog/Dialog'>;
 }
@@ -346,14 +361,20 @@ declare module 'react-native-paper/src/components/DrawerSection.js' {
 declare module 'react-native-paper/src/components/FAB.js' {
   declare module.exports: $Exports<'react-native-paper/src/components/FAB'>;
 }
+declare module 'react-native-paper/src/components/HelperText.js' {
+  declare module.exports: $Exports<'react-native-paper/src/components/HelperText'>;
+}
 declare module 'react-native-paper/src/components/Icon.js' {
   declare module.exports: $Exports<'react-native-paper/src/components/Icon'>;
 }
-declare module 'react-native-paper/src/components/ListItem.js' {
-  declare module.exports: $Exports<'react-native-paper/src/components/ListItem'>;
+declare module 'react-native-paper/src/components/List/ListAccordion.js' {
+  declare module.exports: $Exports<'react-native-paper/src/components/List/ListAccordion'>;
 }
-declare module 'react-native-paper/src/components/ListSection.js' {
-  declare module.exports: $Exports<'react-native-paper/src/components/ListSection'>;
+declare module 'react-native-paper/src/components/List/ListItem.js' {
+  declare module.exports: $Exports<'react-native-paper/src/components/List/ListItem'>;
+}
+declare module 'react-native-paper/src/components/List/ListSection.js' {
+  declare module.exports: $Exports<'react-native-paper/src/components/List/ListSection'>;
 }
 declare module 'react-native-paper/src/components/Modal.js' {
   declare module.exports: $Exports<'react-native-paper/src/components/Modal'>;

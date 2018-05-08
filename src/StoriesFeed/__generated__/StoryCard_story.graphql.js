@@ -8,7 +8,7 @@
 
 /*::
 import type { ConcreteFragment } from 'relay-runtime';
-import type { FragmentReference } from 'relay-runtime';
+import type { FragmentReference } from "relay-runtime";
 declare export opaque type StoryCard_story$ref: FragmentReference;
 export type StoryCard_story = {|
   +id: string,
@@ -107,5 +107,6 @@ return {
   ]
 };
 })();
+// prettier-ignore
 (node/*: any*/).hash = 'a7e1090648c2348efa313d8ed4678fca';
 module.exports = node;

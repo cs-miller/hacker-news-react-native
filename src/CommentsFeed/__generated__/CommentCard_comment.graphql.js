@@ -8,7 +8,7 @@
 
 /*::
 import type { ConcreteFragment } from 'relay-runtime';
-import type { FragmentReference } from 'relay-runtime';
+import type { FragmentReference } from "relay-runtime";
 declare export opaque type CommentCard_comment$ref: FragmentReference;
 export type CommentCard_comment = {|
   +id: string,
@@ -83,5 +83,6 @@ return {
   ]
 };
 })();
+// prettier-ignore
 (node/*: any*/).hash = '9ad063da27dc729745c99702bb6b80e6';
 module.exports = node;

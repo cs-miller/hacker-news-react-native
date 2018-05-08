@@ -2,14 +2,15 @@
 
 import React, { Component } from 'react';
 import { Text } from 'react-native';
-import { material } from 'react-native-typography';
 import { BottomNavigation } from 'react-native-paper';
+import { Haptic } from 'expo';
 
 import StoriesFeedQueryRenderer from './StoriesFeedQueryRenderer';
 
 type Route = {
   key: string,
-  icon: any
+  title: string,
+  icon: string
 };
 
 type Props = {};
@@ -56,7 +57,10 @@ export default class StoriesFeedNavigator extends Component<Props, State> {
     ]
   };
 
-  _handleIndexChange = (index: number) => this.setState({ index });
+  _handleIndexChange = (index: number) => {
+    Haptic.selection();
+    this.setState({ index });
+  };
 
   _renderScene = BottomNavigation.SceneMap({
     TOP: StoriesFeedQueryRenderer,

@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash ad914778fe354c3fa81f20bf87c54a5c
+ * @relayHash f267f6c8932aad2721583b585e71ab57
  */
 
 /* eslint-disable */
@@ -11,12 +11,12 @@
 import type { ConcreteRequest } from 'relay-runtime';
 type CommentsFeedPaginationContainer_story$ref = any;
 export type CommentsFeedQueryRenderer_QueryVariables = {|
-  storyId: string,
+  storyId: string
 |};
 export type CommentsFeedQueryRenderer_QueryResponse = {|
   +node: ?{|
-    +$fragmentRefs: CommentsFeedPaginationContainer_story$ref,
-  |},
+    +$fragmentRefs: CommentsFeedPaginationContainer_story$ref
+  |}
 |};
 */
 
@@ -309,5 +309,6 @@ return {
   }
 };
 })();
+// prettier-ignore
 (node/*: any*/).hash = '0424b6fdcb9102b9db139fd155cb866d';
 module.exports = node;

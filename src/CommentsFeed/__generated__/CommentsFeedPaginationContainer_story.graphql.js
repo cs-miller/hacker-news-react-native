@@ -9,7 +9,7 @@
 /*::
 import type { ConcreteFragment } from 'relay-runtime';
 type CommentCard_comment$ref = any;
-import type { FragmentReference } from 'relay-runtime';
+import type { FragmentReference } from "relay-runtime";
 declare export opaque type CommentsFeedPaginationContainer_story$ref: FragmentReference;
 export type CommentsFeedPaginationContainer_story = {|
   +id: string,
@@ -25,7 +25,7 @@ export type CommentsFeedPaginationContainer_story = {|
     +edges: ?$ReadOnlyArray<?{|
       +cursor: string,
       +node: ?{|
-        +$fragmentRefs: CommentCard_comment$ref,
+        +$fragmentRefs: CommentCard_comment$ref
       |},
     |}>,
     +pageInfo: {|
@@ -205,5 +205,6 @@ return {
   ]
 };
 })();
+// prettier-ignore
 (node/*: any*/).hash = '00427f0048be1d00a394dd376a9652b2';
 module.exports = node;

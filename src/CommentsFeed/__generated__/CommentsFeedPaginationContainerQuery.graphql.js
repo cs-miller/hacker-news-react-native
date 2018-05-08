@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash af1fc6e62561b4d4ff1c47df764d4859
+ * @relayHash 14b5124d0fa67eb1885c2d408573f0d9
  */
 
 /* eslint-disable */
@@ -17,8 +17,8 @@ export type CommentsFeedPaginationContainerQueryVariables = {|
 |};
 export type CommentsFeedPaginationContainerQueryResponse = {|
   +node: ?{|
-    +$fragmentRefs: CommentsFeedPaginationContainer_story$ref,
-  |},
+    +$fragmentRefs: CommentsFeedPaginationContainer_story$ref
+  |}
 |};
 */
 
@@ -323,5 +323,6 @@ return {
   }
 };
 })();
+// prettier-ignore
 (node/*: any*/).hash = '3976953be57bb68c5d9a8a9ab9ded9a7';
 module.exports = node;

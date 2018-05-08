@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash dff76927ff1c95a9ddc8b71661e05365
+ * @relayHash a82cb313a48d0a2a2ed76b54e713bf75
  */
 
 /* eslint-disable */
@@ -10,7 +10,7 @@
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
 type StoriesFeedPaginationContainer_feed$ref = any;
-export type FeedType = ('ASK' | 'BEST' | 'JOB' | 'NEW' | 'SHOW' | 'TOP' | '%future added value');
+export type FeedType = "ASK" | "BEST" | "JOB" | "NEW" | "SHOW" | "TOP" | "%future added value";
 export type StoriesFeedPaginationContainerQueryVariables = {|
   count: number,
   cursor?: ?string,
@@ -18,8 +18,8 @@ export type StoriesFeedPaginationContainerQueryVariables = {|
 |};
 export type StoriesFeedPaginationContainerQueryResponse = {|
   +storyFeed: ?{|
-    +$fragmentRefs: StoriesFeedPaginationContainer_feed$ref,
-  |},
+    +$fragmentRefs: StoriesFeedPaginationContainer_feed$ref
+  |}
 |};
 */
 
@@ -337,5 +337,6 @@ return {
   }
 };
 })();
+// prettier-ignore
 (node/*: any*/).hash = '0416c5a5da4d88c128a19611b1f083f4';
 module.exports = node;

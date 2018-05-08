@@ -8,6 +8,7 @@ import environment from '../Environment';
 import StoriesFeedPaginationContainer from './StoriesFeedPaginationContainer';
 
 type Props = {
+  jumpTo: any,
   route: {
     key: string
   }

@@ -9,14 +9,14 @@
 /*::
 import type { ConcreteFragment } from 'relay-runtime';
 type StoryCard_story$ref = any;
-import type { FragmentReference } from 'relay-runtime';
+import type { FragmentReference } from "relay-runtime";
 declare export opaque type StoriesFeedPaginationContainer_feed$ref: FragmentReference;
 export type StoriesFeedPaginationContainer_feed = {|
   +stories: ?{|
     +edges: ?$ReadOnlyArray<?{|
       +cursor: string,
       +node: ?{|
-        +$fragmentRefs: StoryCard_story$ref,
+        +$fragmentRefs: StoryCard_story$ref
       |},
     |}>,
     +pageInfo: {|
@@ -139,5 +139,6 @@ const node/*: ConcreteFragment*/ = {
     }
   ]
 };
+// prettier-ignore
 (node/*: any*/).hash = 'af7e58580d29eecf0ca4aec0846d0717';
 module.exports = node;

@@ -1,4 +1,4 @@
-// flow-typed signature: 86bd10523ac39025881b876759cdeed6
+// flow-typed signature: 976627c0f389350a24d01832f0b59c20
 // flow-typed version: <<STUB>>/react-navigation_v^2.0.0-rc.5/flow_v0.71.0
 
 /**
@@ -219,6 +219,10 @@ declare module 'react-navigation/src/views/__tests__/NavigationScenesReducer-tes
 }
 
 declare module 'react-navigation/src/views/__tests__/TabView-test' {
+  declare module.exports: any;
+}
+
+declare module 'react-navigation/src/views/__tests__/Transitioner-test' {
   declare module.exports: any;
 }
 
@@ -480,6 +484,9 @@ declare module 'react-navigation/src/views/__tests__/NavigationScenesReducer-tes
 }
 declare module 'react-navigation/src/views/__tests__/TabView-test.js' {
   declare module.exports: $Exports<'react-navigation/src/views/__tests__/TabView-test'>;
+}
+declare module 'react-navigation/src/views/__tests__/Transitioner-test.js' {
+  declare module.exports: $Exports<'react-navigation/src/views/__tests__/Transitioner-test'>;
 }
 declare module 'react-navigation/src/views/__tests__/withOrientation-test.js' {
   declare module.exports: $Exports<'react-navigation/src/views/__tests__/withOrientation-test'>;
