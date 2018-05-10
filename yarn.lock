@@ -4876,7 +4876,11 @@ react-lifecycles-compat@^1.0.2:
   version "1.1.4"
   resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-1.1.4.tgz#fc005c72849b7ed364de20a0f64ff58ebdc2009a"
 
-react-lifecycles-compat@^3, react-lifecycles-compat@^3.0.2:
+react-lifecycles-compat@^3:
+  version "3.0.3"
+  resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-3.0.3.tgz#473820154732f1ccd762e89324abab154255da6b"
+
+react-lifecycles-compat@^3.0.2:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-3.0.2.tgz#7279047275bd727a912e25f734c0559527e84eff"
 
@@ -5060,8 +5064,8 @@ react-navigation-tabs@0.2.0:
     react-native-tab-view "~0.0.77"
 
 react-navigation@^2.0.0-rc.5:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/react-navigation/-/react-navigation-2.0.0.tgz#f3e7ed29dd8366fd3542b6009a4f6ce4ffa37932"
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/react-navigation/-/react-navigation-2.0.1.tgz#adeba4eb16307c0f740c6c9efafd0c0aa6d47002"
   dependencies:
     clamp "^1.0.1"
     create-react-context "^0.2.1"

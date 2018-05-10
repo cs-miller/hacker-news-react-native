@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import { graphql, QueryRenderer } from 'react-relay';
 import { ActivityIndicator } from 'react-native';
-import { withNavigation } from 'react-navigation';
+import { withNavigation, SafeAreaView } from 'react-navigation';
 
 import environment from '../Environment';
 import CommentsFeedPaginationContainer from './CommentsFeedPaginationContainer';
@@ -53,7 +53,11 @@ class CommentsFeedQueryRenderer extends Component<Props> {
                 color="#ef6f2e"
               />
             );
-          return <CommentsFeedPaginationContainer story={props.node} />;
+          return (
+            <SafeAreaView style={{ flex: 1 }} forceInset={{ bottom: 'never' }}>
+              <CommentsFeedPaginationContainer story={props.node} />
+            </SafeAreaView>
+          );
         }}
       />
     );

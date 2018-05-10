@@ -1,7 +1,7 @@
 //@flow
 
 import React, { Component } from 'react';
-import { ActivityIndicator, Text } from 'react-native';
+import { ActivityIndicator, Text, SafeAreaView } from 'react-native';
 import { graphql, QueryRenderer } from 'react-relay';
 
 import environment from '../Environment';
@@ -50,10 +50,12 @@ export default class StoriesFeedQueryRenderer extends Component<Props> {
               />
             );
           return (
-            <StoriesFeedPaginationContainer
-              feed={props.storyFeed}
-              type={this.props.route.key}
-            />
+            <SafeAreaView style={{ flex: 1 }}>
+              <StoriesFeedPaginationContainer
+                feed={props.storyFeed}
+                type={this.props.route.key}
+              />
+            </SafeAreaView>
           );
         }}
       />
