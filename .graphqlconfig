@@ -2,7 +2,8 @@
   "schemaPath": "schema.graphql",
   "extensions": {
     "endpoints": {
-      "default": "https://hn-gql.now.sh"
+      "default": "https://hn-gql.now.sh",
+      "dev": "https://hn-gql-dev.now.sh"
     }
   }
 }

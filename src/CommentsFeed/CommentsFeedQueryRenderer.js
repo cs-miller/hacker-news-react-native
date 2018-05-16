@@ -1,34 +1,39 @@
 //@flow
 
 import React, { Component } from 'react';
-import { ActivityIndicator, Text } from 'react-native';
 import { graphql, QueryRenderer } from 'react-relay';
+import { ActivityIndicator } from 'react-native';
+import { withNavigation, SafeAreaView } from 'react-navigation';
 
-import environment from './Environment';
-import FeedPaginationContainer from './FeedPaginationContainer';
+import environment from '../Environment';
+import CommentsFeedPaginationContainer from './CommentsFeedPaginationContainer';
 
 type Props = {
-  route: {
-    key: string
+  navigation: {
+    state: {
+      params: {
+        storyId: string
+      }
+    }
   }
 };
 
 const feedQuery = graphql`
-  query FeedQueryRenderer_Query($type: FeedType) {
-    storyFeed(type: $type) {
-      ...FeedPaginationContainer_feed
+  query CommentsFeedQueryRenderer_Query($storyId: ID!) {
+    node(id: $storyId) {
+      ...CommentsFeedPaginationContainer_story
     }
   }
 `;
 
-export default class FeedQueryRenderer extends Component<Props> {
+class CommentsFeedQueryRenderer extends Component<Props> {
   render() {
     return (
       <QueryRenderer
         environment={environment}
         query={feedQuery}
         variables={{
-          type: this.props.route.key
+          storyId: this.props.navigation.state.params.storyId
         }}
         render={({ error, props }) => {
           if (error) return null;
@@ -49,13 +54,14 @@ export default class FeedQueryRenderer extends Component<Props> {
               />
             );
           return (
-            <FeedPaginationContainer
-              feed={props.storyFeed}
-              type={this.props.route.key}
-            />
+            <SafeAreaView style={{ flex: 1 }} forceInset={{ bottom: 'never' }}>
+              <CommentsFeedPaginationContainer story={props.node} />
+            </SafeAreaView>
           );
         }}
       />
     );
   }
 }
+
+export default withNavigation(CommentsFeedQueryRenderer);

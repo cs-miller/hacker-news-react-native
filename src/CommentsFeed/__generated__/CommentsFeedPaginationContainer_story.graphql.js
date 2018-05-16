@@ -8,15 +8,24 @@
 
 /*::
 import type { ConcreteFragment } from 'relay-runtime';
-type StoryCard_story$ref = any;
-import type { FragmentReference } from 'relay-runtime';
-declare export opaque type FeedPaginationContainer_feed$ref: FragmentReference;
-export type FeedPaginationContainer_feed = {|
-  +stories: ?{|
+type CommentCard_comment$ref = any;
+import type { FragmentReference } from "relay-runtime";
+declare export opaque type CommentsFeedPaginationContainer_story$ref: FragmentReference;
+export type CommentsFeedPaginationContainer_story = {|
+  +id: string,
+  +by: {|
+    +id: string,
+    +hnId: string,
+    +created: number,
+  |},
+  +text: ?string,
+  +title: ?string,
+  +url: ?string,
+  +kids: ?{|
     +edges: ?$ReadOnlyArray<?{|
       +cursor: string,
       +node: ?{|
-        +$fragmentRefs: StoryCard_story$ref,
+        +$fragmentRefs: CommentCard_comment$ref
       |},
     |}>,
     +pageInfo: {|
@@ -24,15 +33,23 @@ export type FeedPaginationContainer_feed = {|
       +endCursor: ?string,
     |},
   |},
-  +$refType: FeedPaginationContainer_feed$ref,
+  +$refType: CommentsFeedPaginationContainer_story$ref,
 |};
 */
 
 
-const node/*: ConcreteFragment*/ = {
+const node/*: ConcreteFragment*/ = (function(){
+var v0 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "id",
+  "args": null,
+  "storageKey": null
+};
+return {
   "kind": "Fragment",
-  "name": "FeedPaginationContainer_feed",
-  "type": "Feed",
+  "name": "CommentsFeedPaginationContainer_story",
+  "type": "Story",
   "metadata": {
     "connection": [
       {
@@ -40,7 +57,7 @@ const node/*: ConcreteFragment*/ = {
         "cursor": "cursor",
         "direction": "forward",
         "path": [
-          "stories"
+          "kids"
         ]
       }
     ]
@@ -60,13 +77,61 @@ const node/*: ConcreteFragment*/ = {
     }
   ],
   "selections": [
+    v0,
     {
       "kind": "LinkedField",
-      "alias": "stories",
-      "name": "__FeedPaginationContainer_stories_connection",
+      "alias": null,
+      "name": "by",
       "storageKey": null,
       "args": null,
-      "concreteType": "StoryConnection",
+      "concreteType": "User",
+      "plural": false,
+      "selections": [
+        v0,
+        {
+          "kind": "ScalarField",
+          "alias": null,
+          "name": "hnId",
+          "args": null,
+          "storageKey": null
+        },
+        {
+          "kind": "ScalarField",
+          "alias": null,
+          "name": "created",
+          "args": null,
+          "storageKey": null
+        }
+      ]
+    },
+    {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "text",
+      "args": null,
+      "storageKey": null
+    },
+    {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "title",
+      "args": null,
+      "storageKey": null
+    },
+    {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "url",
+      "args": null,
+      "storageKey": null
+    },
+    {
+      "kind": "LinkedField",
+      "alias": "kids",
+      "name": "__CommentsFeedPaginationContainer_kids_connection",
+      "storageKey": null,
+      "args": null,
+      "concreteType": "CommentConnection",
       "plural": false,
       "selections": [
         {
@@ -75,7 +140,7 @@ const node/*: ConcreteFragment*/ = {
           "name": "edges",
           "storageKey": null,
           "args": null,
-          "concreteType": "StoryEdge",
+          "concreteType": "CommentEdge",
           "plural": true,
           "selections": [
             {
@@ -91,12 +156,12 @@ const node/*: ConcreteFragment*/ = {
               "name": "node",
               "storageKey": null,
               "args": null,
-              "concreteType": "Story",
+              "concreteType": "Comment",
               "plural": false,
               "selections": [
                 {
                   "kind": "FragmentSpread",
-                  "name": "StoryCard_story",
+                  "name": "CommentCard_comment",
                   "args": null
                 },
                 {
@@ -139,5 +204,7 @@ const node/*: ConcreteFragment*/ = {
     }
   ]
 };
-(node/*: any*/).hash = 'ec87e6649cc1d6807eeca88570913b9e';
+})();
+// prettier-ignore
+(node/*: any*/).hash = '00427f0048be1d00a394dd376a9652b2';
 module.exports = node;
