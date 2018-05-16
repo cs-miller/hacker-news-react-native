@@ -1,5 +1,5 @@
-# source: https://hn-gql.now.sh
-# timestamp: Sat Apr 21 2018 23:24:51 GMT-0400 (EDT)
+# source: https://hn-gql-dev.now.sh
+# timestamp: Wed May 16 2018 17:30:18 GMT-0400 (EDT)
 
 type Comment implements Node {
   """The globally unique relay id"""
@@ -62,26 +62,6 @@ type CommentEdge {
 
   """The item at the end of the edge"""
   node: Comment
-}
-
-type Feed {
-  stories(
-    """Returns the first n elements from the list."""
-    first: Int
-
-    """
-    Returns the elements in the list that come after the specified cursor.
-    """
-    after: String
-
-    """Returns the last n elements from the list."""
-    last: Int
-
-    """
-    Returns the elements in the list that come before the specified cursor.
-    """
-    before: String
-  ): StoryConnection
 }
 
 enum FeedType {
@@ -251,7 +231,24 @@ type Query {
     id: ID!
   ): Node
   nodeFromHnId(id: ID!, isUserId: Boolean): Node
-  storyFeed(type: FeedType): Feed
+  storyFeed(
+    """Returns the first n elements from the list."""
+    first: Int
+
+    """
+    Returns the elements in the list that come after the specified cursor.
+    """
+    after: String
+
+    """Returns the last n elements from the list."""
+    last: Int
+
+    """
+    Returns the elements in the list that come before the specified cursor.
+    """
+    before: String
+    type: FeedType
+  ): StoryConnection
 }
 
 type Story implements Node {

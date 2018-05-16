@@ -12,7 +12,7 @@ type StoryCard_story$ref = any;
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type StoriesFeedPaginationContainer_feed$ref: FragmentReference;
 export type StoriesFeedPaginationContainer_feed = {|
-  +stories: ?{|
+  +storyFeed: ?{|
     +edges: ?$ReadOnlyArray<?{|
       +cursor: string,
       +node: ?{|
@@ -32,7 +32,7 @@ export type StoriesFeedPaginationContainer_feed = {|
 const node/*: ConcreteFragment*/ = {
   "kind": "Fragment",
   "name": "StoriesFeedPaginationContainer_feed",
-  "type": "Feed",
+  "type": "Query",
   "metadata": {
     "connection": [
       {
@@ -40,7 +40,7 @@ const node/*: ConcreteFragment*/ = {
         "cursor": "cursor",
         "direction": "forward",
         "path": [
-          "stories"
+          "storyFeed"
         ]
       }
     ]
@@ -57,15 +57,28 @@ const node/*: ConcreteFragment*/ = {
       "name": "cursor",
       "type": "String",
       "defaultValue": null
+    },
+    {
+      "kind": "LocalArgument",
+      "name": "type",
+      "type": "FeedType",
+      "defaultValue": null
     }
   ],
   "selections": [
     {
       "kind": "LinkedField",
-      "alias": "stories",
-      "name": "__StoriesFeedPaginationContainer_stories_connection",
+      "alias": "storyFeed",
+      "name": "__StoriesFeedPaginationContainer_storyFeed_connection",
       "storageKey": null,
-      "args": null,
+      "args": [
+        {
+          "kind": "Variable",
+          "name": "type",
+          "variableName": "type",
+          "type": "FeedType"
+        }
+      ],
       "concreteType": "StoryConnection",
       "plural": false,
       "selections": [
@@ -140,5 +153,5 @@ const node/*: ConcreteFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = 'af7e58580d29eecf0ca4aec0846d0717';
+(node/*: any*/).hash = '5ff37389cae312c64119595d4a3a237e';
 module.exports = node;

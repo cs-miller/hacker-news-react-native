@@ -41,14 +41,14 @@ class StoriesFeedPaginationContainer extends Component<Props, State> {
   render() {
     if (
       !this.props.feed ||
-      !this.props.feed.stories ||
-      !this.props.feed.stories.edges
+      !this.props.feed.storyFeed ||
+      !this.props.feed.storyFeed.edges
     )
       return <FlatList data={[]} renderItem={() => null} />;
 
     return (
       <FlatList
-        data={this.props.feed.stories.edges}
+        data={this.props.feed.storyFeed.edges}
         keyExtractor={edge => edge.node.__id}
         refreshing={this.state.isRefreshing}
         onRefresh={() => this._refresh()}
@@ -65,23 +65,22 @@ const query = graphql`
     $cursor: String
     $type: FeedType!
   ) {
-    storyFeed(type: $type) {
-      ...StoriesFeedPaginationContainer_feed
-        @arguments(count: $count, cursor: $cursor)
-    }
+    ...StoriesFeedPaginationContainer_feed
+      @arguments(count: $count, cursor: $cursor, type: $type)
   }
 `;
 
 export default createPaginationContainer(
   StoriesFeedPaginationContainer,
   graphql`
-    fragment StoriesFeedPaginationContainer_feed on Feed
+    fragment StoriesFeedPaginationContainer_feed on Query
       @argumentDefinitions(
         count: { type: "Int", defaultValue: 10 }
         cursor: { type: "String" }
+        type: { type: "FeedType" }
       ) {
-      stories(first: $count, after: $cursor)
-        @connection(key: "StoriesFeedPaginationContainer_stories") {
+      storyFeed(first: $count, after: $cursor, type: $type)
+        @connection(key: "StoriesFeedPaginationContainer_storyFeed") {
         edges {
           cursor
           node {
@@ -100,8 +99,8 @@ export default createPaginationContainer(
     getVariables(props, { count, cursor }, fragmentVariables) {
       return {
         count,
-        cursor: props.feed.stories.pageInfo.endCursor,
-        type: props.type
+        cursor: props.feed.storyFeed.pageInfo.endCursor,
+        type: fragmentVariables.type
       };
     },
     query

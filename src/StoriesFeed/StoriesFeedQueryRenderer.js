@@ -1,7 +1,7 @@
 //@flow
 
 import React, { Component } from 'react';
-import { ActivityIndicator, Text, SafeAreaView } from 'react-native';
+import { ActivityIndicator, SafeAreaView } from 'react-native';
 import { graphql, QueryRenderer } from 'react-relay';
 
 import environment from '../Environment';
@@ -15,10 +15,13 @@ type Props = {
 };
 
 const feedQuery = graphql`
-  query StoriesFeedQueryRenderer_Query($type: FeedType) {
-    storyFeed(type: $type) {
-      ...StoriesFeedPaginationContainer_feed
-    }
+  query StoriesFeedQueryRenderer_Query(
+    $count: Int!
+    $cursor: String
+    $type: FeedType!
+  ) {
+    ...StoriesFeedPaginationContainer_feed
+      @arguments(count: $count, cursor: $cursor, type: $type)
   }
 `;
 
@@ -29,6 +32,7 @@ export default class StoriesFeedQueryRenderer extends Component<Props> {
         environment={environment}
         query={feedQuery}
         variables={{
+          count: 10,
           type: this.props.route.key
         }}
         render={({ error, props }) => {
@@ -52,7 +56,7 @@ export default class StoriesFeedQueryRenderer extends Component<Props> {
           return (
             <SafeAreaView style={{ flex: 1 }}>
               <StoriesFeedPaginationContainer
-                feed={props.storyFeed}
+                feed={props}
                 type={this.props.route.key}
               />
             </SafeAreaView>

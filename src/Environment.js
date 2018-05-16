@@ -6,7 +6,7 @@ import { installRelayDevTools } from 'relay-devtools';
 installRelayDevTools();
 
 const fetchQuery = (operation, variables) =>
-  fetch('https://hn-gql.now.sh/', {
+  fetch('https://hn-gql-dev.now.sh/', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'

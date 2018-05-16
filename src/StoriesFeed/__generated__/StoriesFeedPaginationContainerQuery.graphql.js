@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash a82cb313a48d0a2a2ed76b54e713bf75
+ * @relayHash e825bd682948f4e06840c3eebe0e2da9
  */
 
 /* eslint-disable */
@@ -17,9 +17,7 @@ export type StoriesFeedPaginationContainerQueryVariables = {|
   type: FeedType,
 |};
 export type StoriesFeedPaginationContainerQueryResponse = {|
-  +storyFeed: ?{|
-    +$fragmentRefs: StoriesFeedPaginationContainer_feed$ref
-  |}
+  +$fragmentRefs: StoriesFeedPaginationContainer_feed$ref
 |};
 */
 
@@ -30,13 +28,11 @@ query StoriesFeedPaginationContainerQuery(
   $cursor: String
   $type: FeedType!
 ) {
-  storyFeed(type: $type) {
-    ...StoriesFeedPaginationContainer_feed_1G22uz
-  }
+  ...StoriesFeedPaginationContainer_feed_PAmmQ
 }
 
-fragment StoriesFeedPaginationContainer_feed_1G22uz on Feed {
-  stories(first: $count, after: $cursor) {
+fragment StoriesFeedPaginationContainer_feed_PAmmQ on Query {
+  storyFeed(first: $count, after: $cursor, type: $type) {
     edges {
       cursor
       node {
@@ -88,15 +84,7 @@ var v0 = [
     "defaultValue": null
   }
 ],
-v1 = [
-  {
-    "kind": "Variable",
-    "name": "type",
-    "variableName": "type",
-    "type": "FeedType"
-  }
-],
-v2 = {
+v1 = {
   "kind": "ScalarField",
   "alias": null,
   "name": "id",
@@ -108,7 +96,7 @@ return {
   "operationKind": "query",
   "name": "StoriesFeedPaginationContainerQuery",
   "id": null,
-  "text": "query StoriesFeedPaginationContainerQuery(\n  $count: Int!\n  $cursor: String\n  $type: FeedType!\n) {\n  storyFeed(type: $type) {\n    ...StoriesFeedPaginationContainer_feed_1G22uz\n  }\n}\n\nfragment StoriesFeedPaginationContainer_feed_1G22uz on Feed {\n  stories(first: $count, after: $cursor) {\n    edges {\n      cursor\n      node {\n        ...StoryCard_story\n        id\n        __typename\n      }\n    }\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n  }\n}\n\nfragment StoryCard_story on Story {\n  id\n  title\n  url\n  time\n  score\n  descendants\n  by {\n    id\n    hnId\n    created\n  }\n}\n",
+  "text": "query StoriesFeedPaginationContainerQuery(\n  $count: Int!\n  $cursor: String\n  $type: FeedType!\n) {\n  ...StoriesFeedPaginationContainer_feed_PAmmQ\n}\n\nfragment StoriesFeedPaginationContainer_feed_PAmmQ on Query {\n  storyFeed(first: $count, after: $cursor, type: $type) {\n    edges {\n      cursor\n      node {\n        ...StoryCard_story\n        id\n        __typename\n      }\n    }\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n  }\n}\n\nfragment StoryCard_story on Story {\n  id\n  title\n  url\n  time\n  score\n  descendants\n  by {\n    id\n    hnId\n    created\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -118,31 +106,26 @@ return {
     "argumentDefinitions": v0,
     "selections": [
       {
-        "kind": "LinkedField",
-        "alias": null,
-        "name": "storyFeed",
-        "storageKey": null,
-        "args": v1,
-        "concreteType": "Feed",
-        "plural": false,
-        "selections": [
+        "kind": "FragmentSpread",
+        "name": "StoriesFeedPaginationContainer_feed",
+        "args": [
           {
-            "kind": "FragmentSpread",
-            "name": "StoriesFeedPaginationContainer_feed",
-            "args": [
-              {
-                "kind": "Variable",
-                "name": "count",
-                "variableName": "count",
-                "type": null
-              },
-              {
-                "kind": "Variable",
-                "name": "cursor",
-                "variableName": "cursor",
-                "type": null
-              }
-            ]
+            "kind": "Variable",
+            "name": "count",
+            "variableName": "count",
+            "type": null
+          },
+          {
+            "kind": "Variable",
+            "name": "cursor",
+            "variableName": "cursor",
+            "type": null
+          },
+          {
+            "kind": "Variable",
+            "name": "type",
+            "variableName": "type",
+            "type": null
           }
         ]
       }
@@ -158,150 +141,120 @@ return {
         "alias": null,
         "name": "storyFeed",
         "storageKey": null,
-        "args": v1,
-        "concreteType": "Feed",
+        "args": [
+          {
+            "kind": "Variable",
+            "name": "after",
+            "variableName": "cursor",
+            "type": "String"
+          },
+          {
+            "kind": "Variable",
+            "name": "first",
+            "variableName": "count",
+            "type": "Int"
+          },
+          {
+            "kind": "Variable",
+            "name": "type",
+            "variableName": "type",
+            "type": "FeedType"
+          }
+        ],
+        "concreteType": "StoryConnection",
         "plural": false,
         "selections": [
           {
             "kind": "LinkedField",
             "alias": null,
-            "name": "stories",
+            "name": "edges",
             "storageKey": null,
-            "args": [
-              {
-                "kind": "Variable",
-                "name": "after",
-                "variableName": "cursor",
-                "type": "String"
-              },
-              {
-                "kind": "Variable",
-                "name": "first",
-                "variableName": "count",
-                "type": "Int"
-              }
-            ],
-            "concreteType": "StoryConnection",
-            "plural": false,
+            "args": null,
+            "concreteType": "StoryEdge",
+            "plural": true,
             "selections": [
+              {
+                "kind": "ScalarField",
+                "alias": null,
+                "name": "cursor",
+                "args": null,
+                "storageKey": null
+              },
               {
                 "kind": "LinkedField",
                 "alias": null,
-                "name": "edges",
+                "name": "node",
                 "storageKey": null,
                 "args": null,
-                "concreteType": "StoryEdge",
-                "plural": true,
+                "concreteType": "Story",
+                "plural": false,
                 "selections": [
+                  v1,
                   {
                     "kind": "ScalarField",
                     "alias": null,
-                    "name": "cursor",
+                    "name": "title",
+                    "args": null,
+                    "storageKey": null
+                  },
+                  {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "name": "url",
+                    "args": null,
+                    "storageKey": null
+                  },
+                  {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "name": "time",
+                    "args": null,
+                    "storageKey": null
+                  },
+                  {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "name": "score",
+                    "args": null,
+                    "storageKey": null
+                  },
+                  {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "name": "descendants",
                     "args": null,
                     "storageKey": null
                   },
                   {
                     "kind": "LinkedField",
                     "alias": null,
-                    "name": "node",
+                    "name": "by",
                     "storageKey": null,
                     "args": null,
-                    "concreteType": "Story",
+                    "concreteType": "User",
                     "plural": false,
                     "selections": [
-                      v2,
+                      v1,
                       {
                         "kind": "ScalarField",
                         "alias": null,
-                        "name": "title",
+                        "name": "hnId",
                         "args": null,
                         "storageKey": null
                       },
                       {
                         "kind": "ScalarField",
                         "alias": null,
-                        "name": "url",
-                        "args": null,
-                        "storageKey": null
-                      },
-                      {
-                        "kind": "ScalarField",
-                        "alias": null,
-                        "name": "time",
-                        "args": null,
-                        "storageKey": null
-                      },
-                      {
-                        "kind": "ScalarField",
-                        "alias": null,
-                        "name": "score",
-                        "args": null,
-                        "storageKey": null
-                      },
-                      {
-                        "kind": "ScalarField",
-                        "alias": null,
-                        "name": "descendants",
-                        "args": null,
-                        "storageKey": null
-                      },
-                      {
-                        "kind": "LinkedField",
-                        "alias": null,
-                        "name": "by",
-                        "storageKey": null,
-                        "args": null,
-                        "concreteType": "User",
-                        "plural": false,
-                        "selections": [
-                          v2,
-                          {
-                            "kind": "ScalarField",
-                            "alias": null,
-                            "name": "hnId",
-                            "args": null,
-                            "storageKey": null
-                          },
-                          {
-                            "kind": "ScalarField",
-                            "alias": null,
-                            "name": "created",
-                            "args": null,
-                            "storageKey": null
-                          }
-                        ]
-                      },
-                      {
-                        "kind": "ScalarField",
-                        "alias": null,
-                        "name": "__typename",
+                        "name": "created",
                         "args": null,
                         "storageKey": null
                       }
                     ]
-                  }
-                ]
-              },
-              {
-                "kind": "LinkedField",
-                "alias": null,
-                "name": "pageInfo",
-                "storageKey": null,
-                "args": null,
-                "concreteType": "PageInfo",
-                "plural": false,
-                "selections": [
-                  {
-                    "kind": "ScalarField",
-                    "alias": null,
-                    "name": "hasNextPage",
-                    "args": null,
-                    "storageKey": null
                   },
                   {
                     "kind": "ScalarField",
                     "alias": null,
-                    "name": "endCursor",
+                    "name": "__typename",
                     "args": null,
                     "storageKey": null
                   }
@@ -310,27 +263,60 @@ return {
             ]
           },
           {
-            "kind": "LinkedHandle",
+            "kind": "LinkedField",
             "alias": null,
-            "name": "stories",
-            "args": [
+            "name": "pageInfo",
+            "storageKey": null,
+            "args": null,
+            "concreteType": "PageInfo",
+            "plural": false,
+            "selections": [
               {
-                "kind": "Variable",
-                "name": "after",
-                "variableName": "cursor",
-                "type": "String"
+                "kind": "ScalarField",
+                "alias": null,
+                "name": "hasNextPage",
+                "args": null,
+                "storageKey": null
               },
               {
-                "kind": "Variable",
-                "name": "first",
-                "variableName": "count",
-                "type": "Int"
+                "kind": "ScalarField",
+                "alias": null,
+                "name": "endCursor",
+                "args": null,
+                "storageKey": null
               }
-            ],
-            "handle": "connection",
-            "key": "StoriesFeedPaginationContainer_stories",
-            "filters": null
+            ]
           }
+        ]
+      },
+      {
+        "kind": "LinkedHandle",
+        "alias": null,
+        "name": "storyFeed",
+        "args": [
+          {
+            "kind": "Variable",
+            "name": "after",
+            "variableName": "cursor",
+            "type": "String"
+          },
+          {
+            "kind": "Variable",
+            "name": "first",
+            "variableName": "count",
+            "type": "Int"
+          },
+          {
+            "kind": "Variable",
+            "name": "type",
+            "variableName": "type",
+            "type": "FeedType"
+          }
+        ],
+        "handle": "connection",
+        "key": "StoriesFeedPaginationContainer_storyFeed",
+        "filters": [
+          "type"
         ]
       }
     ]
@@ -338,5 +324,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '0416c5a5da4d88c128a19611b1f083f4';
+(node/*: any*/).hash = '3f4412af360db0334db8c257b7508e77';
 module.exports = node;
