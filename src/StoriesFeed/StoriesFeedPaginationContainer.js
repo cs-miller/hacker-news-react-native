@@ -49,11 +49,15 @@ class StoriesFeedPaginationContainer extends Component<Props, State> {
     return (
       <FlatList
         data={this.props.feed.storyFeed.edges}
-        keyExtractor={edge => edge.node.__id}
+        keyExtractor={(edge, index) =>
+          edge.node ? edge.node.id : String(index)
+        }
         refreshing={this.state.isRefreshing}
         onRefresh={() => this._refresh()}
         onEndReached={() => this._loadMore()}
-        renderItem={({ item: edge }) => <StoryCard story={edge.node} />}
+        renderItem={({ item: edge }) =>
+          edge.node ? <StoryCard story={edge.node} /> : undefined
+        }
       />
     );
   }
@@ -84,6 +88,7 @@ export default createPaginationContainer(
         edges {
           cursor
           node {
+            id
             ...StoryCard_story
           }
         }

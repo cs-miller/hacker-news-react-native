@@ -16,7 +16,8 @@ export type StoriesFeedPaginationContainer_feed = {|
     +edges: ?$ReadOnlyArray<?{|
       +cursor: string,
       +node: ?{|
-        +$fragmentRefs: StoryCard_story$ref
+        +id: string,
+        +$fragmentRefs: StoryCard_story$ref,
       |},
     |}>,
     +pageInfo: {|
@@ -108,6 +109,13 @@ const node/*: ConcreteFragment*/ = {
               "plural": false,
               "selections": [
                 {
+                  "kind": "ScalarField",
+                  "alias": null,
+                  "name": "id",
+                  "args": null,
+                  "storageKey": null
+                },
+                {
                   "kind": "FragmentSpread",
                   "name": "StoryCard_story",
                   "args": null
@@ -153,5 +161,5 @@ const node/*: ConcreteFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = '5ff37389cae312c64119595d4a3a237e';
+(node/*: any*/).hash = '1105547407e6024d3700cc8d75f0dd97';
 module.exports = node;

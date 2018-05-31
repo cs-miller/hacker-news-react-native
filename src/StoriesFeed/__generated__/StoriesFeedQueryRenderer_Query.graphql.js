@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash f332336a4db416fee6df88997ec776de
+ * @relayHash 155e92924a0fd6ad4c3a7613cd4abf5c
  */
 
 /* eslint-disable */
@@ -36,8 +36,8 @@ fragment StoriesFeedPaginationContainer_feed_PAmmQ on Query {
     edges {
       cursor
       node {
-        ...StoryCard_story
         id
+        ...StoryCard_story
         __typename
       }
     }
@@ -96,7 +96,7 @@ return {
   "operationKind": "query",
   "name": "StoriesFeedQueryRenderer_Query",
   "id": null,
-  "text": "query StoriesFeedQueryRenderer_Query(\n  $count: Int!\n  $cursor: String\n  $type: FeedType!\n) {\n  ...StoriesFeedPaginationContainer_feed_PAmmQ\n}\n\nfragment StoriesFeedPaginationContainer_feed_PAmmQ on Query {\n  storyFeed(first: $count, after: $cursor, type: $type) {\n    edges {\n      cursor\n      node {\n        ...StoryCard_story\n        id\n        __typename\n      }\n    }\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n  }\n}\n\nfragment StoryCard_story on Story {\n  id\n  title\n  url\n  time\n  score\n  descendants\n  by {\n    id\n    hnId\n    created\n  }\n}\n",
+  "text": "query StoriesFeedQueryRenderer_Query(\n  $count: Int!\n  $cursor: String\n  $type: FeedType!\n) {\n  ...StoriesFeedPaginationContainer_feed_PAmmQ\n}\n\nfragment StoriesFeedPaginationContainer_feed_PAmmQ on Query {\n  storyFeed(first: $count, after: $cursor, type: $type) {\n    edges {\n      cursor\n      node {\n        id\n        ...StoryCard_story\n        __typename\n      }\n    }\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n  }\n}\n\nfragment StoryCard_story on Story {\n  id\n  title\n  url\n  time\n  score\n  descendants\n  by {\n    id\n    hnId\n    created\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
